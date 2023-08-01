@@ -1,4 +1,4 @@
-import video from "../assets/demo.webm";
+import video from "../assets/demo.mp4";
 const Capacitacion = () => {
   return (
     <div className="flex flex-col justify-center items-center">
