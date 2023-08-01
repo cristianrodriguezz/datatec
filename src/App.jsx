@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router";
 import Layout from "./layouts/Layout";
 import Login from "./views/Login";
 import Capacitacion from "./views/Capacitacion";
+import './App.css'
 
 function App() {
   return (
