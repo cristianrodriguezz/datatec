@@ -10,9 +10,8 @@ function App() {
     <Layout>
       <Routes>
         <Route path="/tablas" exact element={<Tables />} />
-        <Route path="/login" exact element={<Login />} />
+        <Route path="/" exact element={<Login />} />
         <Route path="/capacitacion" exact element={<Capacitacion />} />
-        {/* <Route path="/capacitacion" exact element={<Tables />} /> */}
       </Routes>
     </Layout>
   );
