@@ -1,49 +1,72 @@
+import { useState } from "react";
+
 const Delete = () => {
+  const [hover, setHover] = useState(false);
+  const handleMouseEnter = () => {
+    setHover(true);
+  };
+
+  const handleMouseLeave = () => {
+    setHover(false);
+  };
+  const handleClick = () => {
+    setHover(false);
+  };
+
   return (
-    <svg
-      version="1.1"
-      id="Capa_1"
-      xmlns="http://www.w3.org/2000/svg"
-      x="0px"
-      y="0px"
-      viewBox="0 0 791.908 791.908"
-      width={20}
-      height={20}
-      fill="red"
-    >
-      <g>
+    <>
+      <svg
+        aria-hidden="true"
+        fill="none"
+        focusable="false"
+        height="2em"
+        role="presentation"
+        viewBox="0 0 20 20"
+        width="2em"
+        onMouseEnter={handleMouseEnter} 
+        onMouseLeave={handleMouseLeave}
+        onClick={handleClick}
+      >
         <path
-          d="M648.587,99.881H509.156C500.276,43.486,452.761,0,394.444,0S287.696,43.486,279.731,99.881H142.315
-		c-26.733,0-48.43,21.789-48.43,48.43v49.437c0,24.719,17.761,44.493,41.564,47.423V727.64c0,35.613,28.655,64.268,64.268,64.268
-		h392.475c35.613,0,64.268-28.655,64.268-64.268V246.087c23.711-3.937,41.564-23.711,41.564-47.423v-49.437
-		C697.017,121.67,675.228,99.881,648.587,99.881z M394.444,36.62c38.543,0,70.219,26.733,77.085,63.261H316.351
-		C324.225,64.268,355.901,36.62,394.444,36.62z M618.924,728.739c0,14.831-11.901,27.648-27.648,27.648H198.71
-		c-14.831,0-27.648-11.901-27.648-27.648V247.185h446.948v481.554H618.924z M660.397,197.748c0,6.958-4.944,11.902-11.902,11.902
-		H142.223c-6.958,0-11.902-4.944-11.902-11.902v-49.437c0-6.958,4.944-11.902,11.902-11.902h505.265
-		c6.958,0,11.901,4.944,11.901,11.902v49.437H660.397z M253.09,661.45V349.081c0-9.887,7.873-17.761,17.761-17.761
-		s17.761,7.873,17.761,17.761V661.45c0,9.887-7.873,17.761-17.761,17.761C260.964,680.309,253.09,671.337,253.09,661.45z
-		 M378.606,661.45V349.081c0-9.887,7.873-17.761,17.761-17.761c9.887,0,17.761,7.873,17.761,17.761V661.45
-		c0,9.887-7.873,17.761-17.761,17.761C386.57,680.309,378.606,671.337,378.606,661.45z M504.212,661.45V349.081
-		c0-9.887,7.873-17.761,17.761-17.761s17.761,7.873,17.761,17.761V661.45c0,9.887-7.873,17.761-17.761,17.761
-		C513.093,680.309,504.212,671.337,504.212,661.45z"
-        />
-      </g>
-      <g></g>
-      <g></g>
-      <g></g>
-      <g></g>
-      <g></g>
-      <g></g>
-      <g></g>
-      <g></g>
-      <g></g>
-      <g></g>
-      <g></g>
-      <g></g>
-      <g></g>
-      <g></g>
-      <g></g>
-    </svg>
+          d="M17.5 4.98332C14.725 4.70832 11.9333 4.56665 9.15 4.56665C7.5 4.56665 5.85 4.64998 4.2 4.81665L2.5 4.98332"
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="1.5"
+        ></path>
+        <path
+          d="M7.08331 4.14169L7.26665 3.05002C7.39998 2.25835 7.49998 1.66669 8.90831 1.66669H11.0916C12.5 1.66669 12.6083 2.29169 12.7333 3.05835L12.9166 4.14169"
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="1.5"
+        ></path>
+        <path
+          d="M15.7084 7.61664L15.1667 16.0083C15.075 17.3166 15 18.3333 12.675 18.3333H7.32502C5.00002 18.3333 4.92502 17.3166 4.83335 16.0083L4.29169 7.61664"
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="1.5"
+        ></path>
+        <path
+          d="M8.60834 13.75H11.3833"
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="1.5"
+        ></path>
+        <path
+          d="M7.91669 10.4167H12.0834"
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="1.5"
+        ></path>
+      </svg>
+      <div className="absolute">
+        <p className={hover ? 'visible animate-fade animate-once animate-duration-[400ms] animate-ease-out relative -top-16 -left-11 bg-red-600 rounded-xl text-[1rem] text-white font-medium p-1' : 'hidden'} >Borrar usuario</p>
+      </div>
+    </>
   );
 };
 
