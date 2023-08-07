@@ -13,7 +13,7 @@ const Users = () => {
                 </label>
                 <input placeholder="Buscar por nombre..." type="search" id="searchUsers" className="w-full h-full rounded-lg bg-victoria-heading focus:no-underline focus:outline-none"/>
             </div>
-            <div className="flex gap-3 hidden">
+            <div className="flex gap-3 ">
                 <select name="status" id="status" className="focus:outline-none bg-victoria-heading text-white px-3 rounded-lg">
                     <option value="none" selected hidden>Estado</option>
                     <option value="all">Todos</option>

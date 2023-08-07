@@ -5,6 +5,7 @@ import Login from "./views/Login";
 import Capacitacion from "./views/Capacitacion";
 import './App.css'
 import Users from "./views/Users";
+import Chat from "./components/Chat";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/" exact element={<Login />} />
         <Route path="/capacitacion" exact element={<Capacitacion />} />
         <Route path="/users" exact element={<Users />} />
+        <Route path="/chat" exact element={<Chat />} />
       </Routes>
     </Layout>
   );
