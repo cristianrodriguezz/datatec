@@ -1,9 +1,10 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import io from 'socket.io-client';
 
 const Chat = () => {
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
+  const ref = useRef()
   const socket = useMemo(() => io('wss://chatdamatecc.fly.dev/'), []);
 
   const handleSubmit = (e) => {
@@ -12,6 +13,12 @@ const Chat = () => {
     setMessages((prev) => [...prev, message]);
     setMessage('');
   };
+  const scrollDown = () => {
+    console.log(ref.current.scrollHeight );
+    console.log(ref.current.scrollTop );
+    ref.current.scrollTop = ref.current.scrollHeight
+
+  }
 
   const handleChange = useCallback((e) => {
     setMessage(e.target.value);
@@ -20,6 +27,9 @@ const Chat = () => {
   console.log("render");
 
   useEffect(() => {
+    scrollDown()
+
+
     const handleSocketMessage = (newMessage) => {
       setMessages((prev) => [...prev, newMessage]);
     };
@@ -30,12 +40,12 @@ const Chat = () => {
       socket.off('message', handleSocketMessage);
       socket.disconnect();
     };
-  }, [socket]);
+  }, [messages.length, socket]);
 
   return (
-    <>
-      <form onSubmit={handleSubmit} className="flex flex-col flex-grow w-full max-w-xl h-[300px] sm:h-screen mb-20 bg-white shadow-xl rounded-lg overflow-hidden">
-        <div className="flex flex-col flex-grow h-0 p-4 overflow-auto">
+    <div className='flex justify-center items-start mt-10 h-screen'>
+      <form onSubmit={handleSubmit} className="flex flex-col flex-grow w-full max-w-xl h-[300px] sm:h-[600px] mb-20 bg-white shadow-xl rounded-lg overflow-hidden">
+        <div ref={ref} className="flex flex-col flex-grow h-0 p-4 overflow-auto ">
           {
             messages.map((message, index) => (
               <div key={index} className="flex w-full mt-2 space-x-3 max-w-xs">
@@ -51,14 +61,14 @@ const Chat = () => {
           }
 
         </div>
-        <div className="bg-gray-300 p-4">
+        <div className="bg-gray-300 p-4 flex gap-2">
           <input value={message} type="text" onChange={handleChange}  className="flex items-center h-10 w-full rounded px-3 text-sm"  placeholder="Type your message…"/>
-          <button className='bg-red-300' type='submit'>Enviar</button>
+          <button className='text-white bg-victoria-primary p-2 rounded-lg'  type='submit'>Enviar</button>
         </div>
     </form>
 
 
-  </>
+  </div>
   );
 };
 

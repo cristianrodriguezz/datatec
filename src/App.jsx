@@ -3,10 +3,9 @@ import { Routes, Route } from "react-router";
 import Layout from "./layouts/Layout";
 import Login from "./views/Login";
 import Capacitacion from "./views/Capacitacion";
-import './App.css'
+import "./App.css";
 import Users from "./views/Users";
 import Chat from "./components/Chat";
-
 
 function App() {
   return (
