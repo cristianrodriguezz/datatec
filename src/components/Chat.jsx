@@ -1,6 +1,7 @@
 import {  useEffect, useMemo, useRef, useState } from 'react';
 import io from 'socket.io-client';
 import InputField from './InputField';
+import { getHoraNow } from '../utils/getHoraNow';
 
 const Chat = () => {
 
@@ -11,6 +12,8 @@ const Chat = () => {
 
   const socket = useMemo(() => io('wss://chatdamatecc.fly.dev/'), []);
 
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const formu = new FormData(form.current)
@@ -19,7 +22,7 @@ const Chat = () => {
 
     socket.emit('message', message);
     setMessages((prev) => [...prev, message]);
-    formu.append('messageInput','aaaaaa')
+
     document.getElementById('messageInput').value = ''
 
   };
@@ -59,7 +62,7 @@ const Chat = () => {
                 <div className="bg-gray-300 p-3 rounded-r-lg rounded-bl-lg">
                   <p className="text-sm">{message}</p>
                 </div>
-                <span className="text-xs text-gray-500 leading-none">2 min ago</span>
+                <span className="text-xs text-gray-500 leading-none">{getHoraNow()}</span>
               </div>
             </div>
             ))
