@@ -1,17 +1,27 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import {  useEffect, useMemo, useRef, useState } from 'react';
 import io from 'socket.io-client';
+import InputField from './InputField';
 
 const Chat = () => {
-  const [message, setMessage] = useState('');
+
   const [messages, setMessages] = useState([]);
+
   const ref = useRef()
-  const socket = useMemo(() => io('http://localhost:3000/'), []);
+  const form = useRef()
+
+  const socket = useMemo(() => io('wss://chatdamatecc.fly.dev/'), []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const formu = new FormData(form.current)
+
+    const message = formu.get('messageInput')
+
     socket.emit('message', message);
     setMessages((prev) => [...prev, message]);
-    setMessage('');
+    formu.append('messageInput','aaaaaa')
+    document.getElementById('messageInput').value = ''
+
   };
   const scrollDown = () => {
     console.log(ref.current.scrollHeight );
@@ -20,15 +30,10 @@ const Chat = () => {
 
   }
 
-  const handleChange = useCallback((e) => {
-    setMessage(e.target.value);
-  }, []);
-
   console.log("render");
 
   useEffect(() => {
     scrollDown()
-
 
     const handleSocketMessage = (newMessage) => {
       setMessages((prev) => [...prev, newMessage]);
@@ -40,11 +45,11 @@ const Chat = () => {
       socket.off('message', handleSocketMessage);
 
     };
-  }, [messages.length]);
+  }, [messages.length, socket]);
 
   return (
     <div className='flex justify-center items-start mt-10 h-screen'>
-      <form onSubmit={handleSubmit} className="flex flex-col flex-grow w-full max-w-xl h-[300px] sm:h-[600px] mb-20 bg-white shadow-xl rounded-lg overflow-hidden">
+      <form ref={form} onSubmit={handleSubmit} className="flex flex-col flex-grow w-full max-w-xl h-[300px] sm:h-[600px] mb-20 bg-white shadow-xl rounded-lg overflow-hidden">
         <div ref={ref} className="flex flex-col flex-grow h-0 p-4 overflow-auto ">
           {
             messages.map((message, index) => (
@@ -59,12 +64,8 @@ const Chat = () => {
             </div>
             ))
           }
-
         </div>
-        <div className="bg-gray-300 p-4 flex gap-2">
-          <input value={message} type="text" onChange={handleChange}  className="flex items-center h-10 w-full rounded px-3 text-sm"  placeholder="Type your message…"/>
-          <button className='text-white bg-victoria-primary p-2 rounded-lg'  type='submit'>Enviar</button>
-        </div>
+        <InputField />
     </form>
 
 
