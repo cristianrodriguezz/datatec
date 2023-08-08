@@ -5,7 +5,7 @@ const Chat = () => {
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
   const ref = useRef()
-  const socket = useMemo(() => io('wss://chatdamatecc.fly.dev/'), []);
+  const socket = useMemo(() => io('http://localhost:3000/'), []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -38,9 +38,9 @@ const Chat = () => {
 
     return () => {
       socket.off('message', handleSocketMessage);
-      socket.disconnect();
+
     };
-  }, [messages.length, socket]);
+  }, [messages.length]);
 
   return (
     <div className='flex justify-center items-start mt-10 h-screen'>
