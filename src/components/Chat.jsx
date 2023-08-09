@@ -1,7 +1,8 @@
 import {  useEffect, useMemo, useRef, useState } from 'react';
 import io from 'socket.io-client';
 import InputField from './InputField';
-import { HOUR_NOW, MESSAGE} from '../utils/consants';
+import { MESSAGE} from '../utils/consants';
+import { getHourNow } from '../utils/getHourNow';
 
 const Chat = () => {
 
@@ -10,7 +11,7 @@ const Chat = () => {
   const ref = useRef()
   const form = useRef()
 
-  const socket = useMemo(() => io('wss://chatdamatecc.fly.dev/'), []);
+  const socket = useMemo(() => io('https://chatdamatecc.fly.dev/'), []);
 
 
 
@@ -22,7 +23,7 @@ const Chat = () => {
     
     const messageComplet = {
       body: message,
-      hour: HOUR_NOW,
+      hour: getHourNow(),
       user: MESSAGE.ME,
       avatar: null
     }
