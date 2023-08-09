@@ -1,7 +1,7 @@
 import  { useState, useEffect } from 'react';
 import io from 'socket.io-client';
 
-const socket = io('ws://0.tcp.sa.ngrok.io:10392/'); // Change to your server URL
+const socket = io('http://localhost:3000/'); // Change to your server URL
 
 const MouseFollower = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
