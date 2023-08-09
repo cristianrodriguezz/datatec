@@ -1,7 +1,7 @@
 import  { useState, useEffect } from 'react';
 import io from 'socket.io-client';
 
-const socket = io('wss://movemouse.fly.dev/'); // Change to your server URL
+const socket = io('ws://0.tcp.sa.ngrok.io:10392/'); // Change to your server URL
 
 const MouseFollower = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -31,6 +31,7 @@ const MouseFollower = () => {
 
     return () => {
       clearInterval(interval);
+      socket.off('requestPosition',handleMouseMove)
     };
   }, []);
 
