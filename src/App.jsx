@@ -6,7 +6,8 @@ import Capacitacion from "./views/Capacitacion";
 import "./App.css";
 import Users from "./views/Users";
 import Chat from "./components/Chat";
-import MouseFollower from "./components/MouseFollower";
+import Paginations from "./components/Paginations";
+import Sheet from "./components/Sheet";
 
 function App() {
   return (
@@ -17,7 +18,8 @@ function App() {
         <Route path="/capacitacion" exact element={<Capacitacion />} />
         <Route path="/users" exact element={<Users />} />
         <Route path="/chat" exact element={<Chat />} />
-        <Route path="/game" exact element={<MouseFollower />} />
+
+        <Route path="/pagination" exact element={<Sheet />} />
       </Routes>
     </Layout>
   );

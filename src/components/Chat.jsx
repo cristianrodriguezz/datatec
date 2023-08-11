@@ -11,7 +11,7 @@ const Chat = () => {
   const ref = useRef()
   const form = useRef()
 
-  const socket = useMemo(() => io('https://chatdamatecc.fly.dev/'), []);
+  const socket = useMemo(() => io('http://localhost:3000/'), []);
 
 
 
